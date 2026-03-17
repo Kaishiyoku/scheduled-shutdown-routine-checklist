@@ -1,0 +1,33 @@
+{
+	"name": "scheduled-shutdown-routine-checklist",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"lint": "biome lint ./src",
+		"format": "biome format ./src",
+		"preview": "vite preview",
+		"deploy": "npm run build && gh-pages -d dist -e docs"
+	},
+	"dependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@tailwindcss/forms": "^0.5.10",
+		"@tailwindcss/typography": "^0.5.16",
+		"@tailwindcss/vite": "^4.0.14",
+		"@types/react": "^19.0.10",
+		"@types/react-dom": "^19.0.4",
+		"@vitejs/plugin-react": "^4.3.4",
+		"clsx": "^2.1.1",
+		"gh-pages": "^6.3.0",
+		"globals": "^15.15.0",
+		"react-router": "^7.3.0",
+		"typescript": "~5.7.2",
+		"vite": "^6.2.0"
+	}
+}

@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --font-sans: "Inter", "sans-serif";
+}
+
+@utility link {
+    @apply underline underline-offset-2 hover:decoration-2 text-zinc-950 decoration-zinc-950/50 hover:decoration-blue-600 dark:text-white dark:decoration-white/50 dark:hover:decoration-blue-500 transition ease-in;
+}
