@@ -1,7 +1,16 @@
-import {Outlet} from 'react-router';
-import {StackedLayout} from '../Components/Catalyst/stacked-layout.tsx';
-import {Navbar, NavbarItem, NavbarSection,} from '../Components/Catalyst/navbar.tsx';
-import {Sidebar, SidebarBody, SidebarItem, SidebarSection,} from '../Components/Catalyst/sidebar.tsx';
+import { Outlet } from 'react-router';
+import { StackedLayout } from '../Components/Catalyst/stacked-layout.tsx';
+import {
+	Navbar,
+	NavbarItem,
+	NavbarSection,
+} from '../Components/Catalyst/navbar.tsx';
+import {
+	Sidebar,
+	SidebarBody,
+	SidebarItem,
+	SidebarSection,
+} from '../Components/Catalyst/sidebar.tsx';
 
 export default function Layout() {
 	const navItems = [
@@ -33,7 +42,7 @@ export default function Layout() {
 					<SidebarBody>
 						<SidebarSection>
 							{navItems.map(({ label, url }) => (
-								<SidebarItem key={label} to={url}>
+								<SidebarItem key={label} href={url}>
 									{label}
 								</SidebarItem>
 							))}

@@ -8,12 +8,26 @@ import {
 	TableHeader,
 	TableRow,
 } from '../Catalyst/table.tsx';
-import {DescriptionDetails, DescriptionList, DescriptionTerm} from '../Catalyst/description-list.tsx';
+import {
+	DescriptionDetails,
+	DescriptionList,
+	DescriptionTerm,
+} from '../Catalyst/description-list.tsx';
+import { useSetAtom } from 'jotai';
+import { deleteTaskAlertAtom } from '../../Stores/deleteTaskAlertAtom.ts';
+import type { Task } from '../../Types/Task';
 
 export default function TaskListManager() {
 	const { tasks, removeTask } = useTasks();
+	const setDeleteTaskAlert = useSetAtom(deleteTaskAlertAtom);
 
-	const onDeleteTask = (id: string) => () => removeTask(id);
+	const onDeleteTask = (task: Task) => () => {
+		setDeleteTaskAlert({
+			isOpen: true,
+			task,
+			action: () => removeTask(task.id),
+		});
+	};
 
 	return (
 		<Table dense striped>
@@ -30,22 +44,18 @@ export default function TaskListManager() {
 					<TableRow key={task.id}>
 						<TableCell className="max-sm:hidden">{task.id}</TableCell>
 						<TableCell>
-                            <div className="max-sm:hidden">{task.text}</div>
+							<div className="max-sm:hidden">{task.text}</div>
 
-                            <DescriptionList className="sm:hidden">
-                                <DescriptionTerm>ID</DescriptionTerm>
-                                <DescriptionDetails>{task.id}</DescriptionDetails>
+							<DescriptionList className="sm:hidden">
+								<DescriptionTerm>ID</DescriptionTerm>
+								<DescriptionDetails>{task.id}</DescriptionDetails>
 
-                                <DescriptionTerm>Text</DescriptionTerm>
-                                <DescriptionDetails>{task.text}</DescriptionDetails>
-                            </DescriptionList>
-                        </TableCell>
+								<DescriptionTerm>Text</DescriptionTerm>
+								<DescriptionDetails>{task.text}</DescriptionDetails>
+							</DescriptionList>
+						</TableCell>
 						<TableCell className="text-right">
-							<Button
-								type="button"
-								color="light"
-								onClick={onDeleteTask(task.id)}
-							>
+							<Button type="button" color="light" onClick={onDeleteTask(task)}>
 								Delete
 							</Button>
 						</TableCell>

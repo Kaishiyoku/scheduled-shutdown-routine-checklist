@@ -1,7 +1,7 @@
-import {useRef, useState} from 'react';
+import { useRef, useState } from 'react';
 import useTasks from '../../Hooks/useTasks.ts';
-import {Input} from '../Catalyst/input.tsx';
-import {Button} from '../Catalyst/button.tsx';
+import { Input } from '../Catalyst/input.tsx';
+import { Button } from '../Catalyst/button.tsx';
 
 export default function ImportTaskButton() {
 	const { setTasks } = useTasks();
@@ -28,7 +28,11 @@ export default function ImportTaskButton() {
 
 	return (
 		<>
-			<Button type="button" color="light" onClick={() => importTaskListInput.current?.click()}>
+			<Button
+				type="button"
+				color="light"
+				onClick={() => importTaskListInput.current?.click()}
+			>
 				Import task list
 			</Button>
 

@@ -2,7 +2,7 @@ import useTasks from '../../Hooks/useTasks.ts';
 import { Button } from '../Catalyst/button.tsx';
 import { Input } from '../Catalyst/input.tsx';
 import { useState } from 'react';
-import {Field, Label} from '../Catalyst/fieldset.tsx';
+import { Field, Label } from '../Catalyst/fieldset.tsx';
 
 export default function AddTaskForm() {
 	const { addTask } = useTasks();
@@ -30,9 +30,7 @@ export default function AddTaskForm() {
 			className="flex max-sm:flex-col sm:items-end sm:space-x-2 max-sm:space-y-2"
 		>
 			<Field>
-				<Label htmlFor="text">
-					Add task
-				</Label>
+				<Label htmlFor="text">Add task</Label>
 
 				<Input
 					id="text"
