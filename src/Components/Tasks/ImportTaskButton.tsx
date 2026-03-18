@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import {useRef, useState} from 'react';
 import useTasks from '../../Hooks/useTasks.ts';
-import { Input } from '../Catalyst/input.tsx';
-import {Field, Label} from '../Catalyst/fieldset.tsx';
+import {Input} from '../Catalyst/input.tsx';
+import {Field} from '../Catalyst/fieldset.tsx';
+import {Button} from '../Catalyst/button.tsx';
 
 export default function ImportTaskButton() {
 	const { setTasks } = useTasks();
 	const [importKey, setImportKey] = useState(0);
+
+	const importTaskListInput = useRef<HTMLInputElement>(null);
 
 	const handleImport = async (
 		event: React.SyntheticEvent<HTMLInputElement>,
@@ -26,17 +29,18 @@ export default function ImportTaskButton() {
 
 	return (
 		<Field>
-			<Label htmlFor="file">
+			<Button type="button" color="light" onClick={() => importTaskListInput.current?.click()}>
 				Import task list
-			</Label>
+			</Button>
 
 			<Input
+				ref={importTaskListInput}
 				key={importKey}
 				type="file"
 				id="file"
 				name="file"
 				onChange={handleImport}
-				className="file:mr-4 file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white-700 hover:file:bg-black dark:file:bg-white dark:file:text-black dark:hover:file:bg-zinc-100"
+				className="hidden"
 			/>
 		</Field>
 	);
