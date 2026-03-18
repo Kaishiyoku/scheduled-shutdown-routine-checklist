@@ -1,7 +1,6 @@
 import {useRef, useState} from 'react';
 import useTasks from '../../Hooks/useTasks.ts';
 import {Input} from '../Catalyst/input.tsx';
-import {Field} from '../Catalyst/fieldset.tsx';
 import {Button} from '../Catalyst/button.tsx';
 
 export default function ImportTaskButton() {
@@ -28,7 +27,7 @@ export default function ImportTaskButton() {
 	};
 
 	return (
-		<Field>
+		<>
 			<Button type="button" color="light" onClick={() => importTaskListInput.current?.click()}>
 				Import task list
 			</Button>
@@ -42,6 +41,6 @@ export default function ImportTaskButton() {
 				onChange={handleImport}
 				className="hidden"
 			/>
-		</Field>
+		</>
 	);
 }
