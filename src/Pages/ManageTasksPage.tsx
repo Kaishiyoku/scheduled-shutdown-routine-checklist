@@ -3,7 +3,6 @@ import TaskListManager from '../Components/Tasks/TaskListManager.tsx';
 import ImportTaskButton from '../Components/Tasks/ImportTaskButton.tsx';
 import ExportTasksButton from '../Components/Tasks/ExportTasksButton.tsx';
 import { Divider } from '../Components/Catalyst/divider.tsx';
-import { Button } from '../Components/Catalyst/button.tsx';
 import { useState } from 'react';
 import TaskListSorter from '../Components/Tasks/TaskListSorter.tsx';
 import SortTasksButton from '../Components/Tasks/SortTasksButton.tsx';

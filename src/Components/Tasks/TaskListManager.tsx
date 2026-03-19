@@ -33,8 +33,8 @@ export default function TaskListManager() {
 		<Table dense striped>
 			<TableHead>
 				<TableRow>
-					<TableHeader className="max-sm:hidden">ID</TableHeader>
 					<TableHeader>Text</TableHeader>
+					<TableHeader className="max-sm:hidden">ID</TableHeader>
 					<TableHeader className="text-right">Actions</TableHeader>
 				</TableRow>
 			</TableHead>
@@ -42,7 +42,6 @@ export default function TaskListManager() {
 			<TableBody>
 				{tasks.map((task) => (
 					<TableRow key={task.id}>
-						<TableCell className="max-sm:hidden">{task.id}</TableCell>
 						<TableCell>
 							<div className="max-sm:hidden">{task.text}</div>
 
@@ -54,6 +53,7 @@ export default function TaskListManager() {
 								<DescriptionDetails>{task.text}</DescriptionDetails>
 							</DescriptionList>
 						</TableCell>
+						<TableCell className="max-sm:hidden">{task.id}</TableCell>
 						<TableCell className="text-right">
 							<Button type="button" color="light" onClick={onDeleteTask(task)}>
 								Delete
