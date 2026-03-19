@@ -20,7 +20,7 @@ export default function HomePage() {
 					{tasks.map((task) => (
 						<CheckboxField
 							key={task.id}
-							className="even:bg-zinc-950/2.5 dark:even:bg-white/2.5"
+							className="even:bg-zinc-950/2.5 dark:even:bg-white/2.5 has-checked:*:text-zinc-500 dark:has-checked:*:text-zinc-400 border border-transparent has-active:border-zinc-500 has-focus:border-zinc-500 px-2 py-1 rounded-md"
 						>
 							<Checkbox
 								name={`task-${task.id}`}
