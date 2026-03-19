@@ -8,6 +8,7 @@ export default function useTasks() {
 	const [tasksLoaded, setTasksLoaded] = useState(false);
 	const [tasks, setTasks] = useAtom(tasksAtom);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: this hook should only be called once
 	useEffect(() => {
 		setTasks(loadTasks());
 		setTasksLoaded(true);

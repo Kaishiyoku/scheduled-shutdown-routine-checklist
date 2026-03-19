@@ -7,6 +7,7 @@ import type React from 'react';
 import { forwardRef, useId } from 'react';
 import { TouchTarget } from './button';
 import { Link } from './link';
+import { useMatch } from 'react-router';
 
 export function Navbar({
 	className,
@@ -93,9 +94,12 @@ export const NavbarItem = forwardRef(function NavbarItem(
 		'dark:data-active:bg-white/5 dark:data-active:*:data-[slot=icon]:fill-white',
 	);
 
+	const isActive =
+		typeof props.href === 'string' ? useMatch(props.href) !== null : false;
+
 	return (
 		<span className={clsx(className, 'relative')}>
-			{current && (
+			{(current || isActive) && (
 				<motion.span
 					layoutId="current-indicator"
 					className="absolute inset-x-2 -bottom-2.5 h-0.5 rounded-full bg-zinc-950 dark:bg-white"
@@ -105,7 +109,7 @@ export const NavbarItem = forwardRef(function NavbarItem(
 				<Link
 					{...props}
 					className={classes}
-					data-current={current ? 'true' : undefined}
+					data-current={current || isActive ? 'true' : undefined}
 					ref={ref as React.ForwardedRef<HTMLAnchorElement>}
 				>
 					<TouchTarget>{children}</TouchTarget>
