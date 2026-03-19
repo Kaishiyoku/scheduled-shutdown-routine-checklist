@@ -16,6 +16,7 @@ import {
 import { useSetAtom } from 'jotai';
 import { deleteTaskAlertAtom } from '../../Stores/deleteTaskAlertAtom.ts';
 import type { Task } from '../../Types/Task';
+import { Text } from '../Catalyst/text.tsx';
 
 export default function TaskListManager() {
 	const { tasks, removeTask } = useTasks();
@@ -40,6 +41,14 @@ export default function TaskListManager() {
 			</TableHead>
 
 			<TableBody>
+				{tasks.length === 0 && (
+					<TableRow>
+						<TableCell colSpan={3}>
+							<Text>No tasks added yet. Add some tasks to get started.</Text>
+						</TableCell>
+					</TableRow>
+				)}
+
 				{tasks.map((task) => (
 					<TableRow key={task.id}>
 						<TableCell>

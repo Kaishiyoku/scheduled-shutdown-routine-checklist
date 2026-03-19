@@ -55,6 +55,16 @@ export default function HomePage() {
 			</div>
 
 			<div className="pt-8">
+				{tasks.length === 0 && (
+					<div className="border border-zinc-950/5 dark:border-white/10 rounded-md p-4 text-center space-y-4">
+						<div>No tasks added yet. Add some tasks to get started.</div>
+
+						<Button href="/tasks" outline className="mt-4">
+							Manage tasks
+						</Button>
+					</div>
+				)}
+
 				<CheckboxGroup>
 					{tasks.map((task) => (
 						<CheckboxField
