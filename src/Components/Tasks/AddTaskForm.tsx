@@ -4,7 +4,11 @@ import { Input } from '../Catalyst/input.tsx';
 import { useState } from 'react';
 import { Field, Label } from '../Catalyst/fieldset.tsx';
 
-export default function AddTaskForm() {
+type AddTaskFormProps = {
+	disabled?: boolean;
+};
+
+export default function AddTaskForm({ disabled = false }: AddTaskFormProps) {
 	const { addTask } = useTasks();
 
 	const [text, setText] = useState('');
@@ -29,7 +33,7 @@ export default function AddTaskForm() {
 			onSubmit={onSubmit}
 			className="flex max-sm:flex-col sm:items-end sm:space-x-2 max-sm:space-y-2"
 		>
-			<Field>
+			<Field disabled={disabled}>
 				<Label htmlFor="text">Add task</Label>
 
 				<Input

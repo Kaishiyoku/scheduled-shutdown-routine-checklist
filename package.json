@@ -14,10 +14,12 @@
 	"dependencies": {
 		"@headlessui/react": "^2.2.9",
 		"@heroicons/react": "^2.2.0",
+		"array-move": "^4.0.0",
 		"jotai": "^2.18.1",
 		"motion": "^12.38.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
+		"react-easy-sort": "^1.8.0",
 		"slug": "^11.0.1",
 		"tailwind-merge": "^3.5.0"
 	},

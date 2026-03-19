@@ -3,7 +3,13 @@ import useTasks from '../../Hooks/useTasks.ts';
 import { Input } from '../Catalyst/input.tsx';
 import { Button } from '../Catalyst/button.tsx';
 
-export default function ImportTaskButton() {
+type ImportTaskButtonProps = {
+	disabled?: boolean;
+};
+
+export default function ImportTaskButton({
+	disabled = false,
+}: ImportTaskButtonProps) {
 	const { setTasks } = useTasks();
 	const [importKey, setImportKey] = useState(0);
 
@@ -32,6 +38,7 @@ export default function ImportTaskButton() {
 				type="button"
 				color="light"
 				onClick={() => importTaskListInput.current?.click()}
+				disabled={disabled}
 			>
 				Import task list
 			</Button>
@@ -44,6 +51,7 @@ export default function ImportTaskButton() {
 				name="file"
 				onChange={handleImport}
 				className="hidden"
+				disabled={disabled}
 			/>
 		</>
 	);

@@ -1,7 +1,13 @@
 import useTasks from '../../Hooks/useTasks.ts';
 import { Button } from '../Catalyst/button.tsx';
 
-export default function ExportTasksButton() {
+type ExportTasksButtonProps = {
+	disabled?: boolean;
+};
+
+export default function ExportTasksButton({
+	disabled = false,
+}: ExportTasksButtonProps) {
 	const { tasks } = useTasks();
 
 	const handleDownload = () => {
@@ -20,7 +26,7 @@ export default function ExportTasksButton() {
 		<Button
 			type="button"
 			color="light"
-			disabled={tasks.length === 0}
+			disabled={tasks.length === 0 || disabled}
 			onClick={handleDownload}
 		>
 			Export task list
