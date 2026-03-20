@@ -1,4 +1,4 @@
-import { Outlet, useMatch } from 'react-router';
+import { Outlet } from 'react-router';
 import { StackedLayout } from '../Components/Catalyst/stacked-layout.tsx';
 import {
 	Navbar,
@@ -13,10 +13,6 @@ import {
 } from '../Components/Catalyst/sidebar.tsx';
 
 export default function Layout() {
-	const a = useMatch('/');
-
-	console.log(a);
-
 	const navItems = [
 		{
 			label: 'Home',
