@@ -13,12 +13,17 @@ import {
 	DialogTitle,
 } from '../Components/Catalyst/dialog.tsx';
 import { Button } from '../Components/Catalyst/button.tsx';
+import type { Task } from '../Types/Task';
 
 export default function HomePage() {
 	const { tasks } = useTasks();
 	const [isFinished, setIsFinished] = useState(false);
 	const [isFinishedDialogOpen, setIsFinishedDialogOpen] = useState(false);
 	const [checkedTaskIds, setCheckedTaskIds] = useState<string[]>([]);
+
+	const [currentlyFocusedTaskId, setCurrentlyFocusedTaskId] = useState<
+		string | null
+	>(null);
 
 	useEffect(() => {
 		if (checkedTaskIds.length > 0 && checkedTaskIds.length === tasks.length) {
@@ -48,6 +53,39 @@ export default function HomePage() {
 		setIsFinishedDialogOpen(false);
 	};
 
+	const onCheckboxGroupKeyDown = (
+		event: React.KeyboardEvent<HTMLDivElement>,
+	) => {
+		const checkboxGroupElement = event.currentTarget;
+		const selector = 'span[data-slot="control"]';
+		const checkboxes =
+			checkboxGroupElement.querySelectorAll<HTMLElement>(selector);
+
+		const currentIndex = tasks.findIndex(
+			(task) => task.id === currentlyFocusedTaskId,
+		);
+
+		if (event.key === 'ArrowDown') {
+			const nextIndex =
+				currentIndex === tasks.length - 1 ? 0 : currentIndex + 1;
+
+			checkboxes.item(nextIndex).focus();
+		} else if (event.key === 'ArrowUp') {
+			const nextIndex =
+				currentIndex === 0 ? tasks.length - 1 : currentIndex - 1;
+
+			checkboxes.item(nextIndex).focus();
+		} else if (event.key === 'Home' || event.key === 'PageUp') {
+			checkboxes.item(0).focus();
+		} else if (event.key === 'End' || event.key === 'PageDown') {
+			checkboxes.item(tasks.length - 1).focus();
+		}
+	};
+
+	const onCheckboxFocus = (task: Task) => () => {
+		setCurrentlyFocusedTaskId(task.id);
+	};
+
 	return (
 		<>
 			<div className="prose dark:prose-invert pb-8">
@@ -65,7 +103,7 @@ export default function HomePage() {
 					</div>
 				)}
 
-				<CheckboxGroup>
+				<CheckboxGroup onKeyDown={onCheckboxGroupKeyDown}>
 					{tasks.map((task) => (
 						<CheckboxField
 							key={task.id}
@@ -79,6 +117,7 @@ export default function HomePage() {
 								checked={checkedTaskIds.includes(task.id)}
 								onChange={onCheckboxChange(task.id)}
 								onKeyDown={(event) => onCheckboxKeyDown(event, task.id)}
+								onFocus={onCheckboxFocus(task)}
 							/>
 							<Label>{task.text}</Label>
 						</CheckboxField>

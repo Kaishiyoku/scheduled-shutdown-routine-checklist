@@ -7,7 +7,9 @@
 		"dev": "vite",
 		"build": "tsc -b && vite build",
 		"lint": "biome lint ./src",
+		"lint:write": "biome lint ./src --write",
 		"format": "biome format ./src",
+		"format:write": "biome format ./src --write",
 		"preview": "vite preview",
 		"deploy": "npm run build && gh-pages -d dist -e docs"
 	},
